@@ -35,11 +35,11 @@ public class DashboardServiceImpl implements DashboardService {
 
 
     @Override
-    @Cacheable(
-            cacheNames = "dashboard",
-            key = "@currentUserService.getCurrentUser().id + ':' + #month + ':' + #year",
-            unless = "#result == null"
-    )
+//    @Cacheable(
+//            cacheNames = "dashboard",
+//            key = "@currentUserService.getCurrentUser().id + ':' + #month + ':' + #year",
+//            unless = "#result == null"
+//    )
     @Transactional(readOnly = true)
     public DashboardResponse getDashboard(Integer month, Integer year) {
 
