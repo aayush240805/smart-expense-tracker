@@ -9,7 +9,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -25,8 +27,8 @@ public class CategoryServiceImpl implements CategoryService {
     )
     public List<CategoryResponse> getCategories(CategoryType type) {
 
-
-        List<Category> categories = categoryRepository.findByTypeOrderByNameAsc(type);
+        List<Category> categories =
+                categoryRepository.findByTypeOrderByNameAsc(type);
 
         return categories.stream()
                 .map(category ->
@@ -34,8 +36,7 @@ public class CategoryServiceImpl implements CategoryService {
                                 .id(category.getId())
                                 .name(category.getName())
                                 .build())
-                .toList();
-
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
 }

@@ -57,7 +57,7 @@ public class RedisCacheConfig {
                         .disableCachingNullValues()
                         .computePrefixWith(
                                 cacheName ->
-                                        "smart-expense-tracker::"
+                                        "smart-expense-tracker-v2::"
                                                 + cacheName + "::"
                         )
                         .serializeKeysWith(
